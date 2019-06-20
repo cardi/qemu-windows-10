@@ -46,15 +46,30 @@ OPTS="$OPTS -vga none"
 OPTS="$OPTS -nographic"
 # Redirect QEMU's console input and output.
 OPTS="$OPTS -monitor stdio"
+
+# (qemu-2.10+) Use QEMU's XHCI host adapter support for USB 1.1, 2, 3
+# This has the added benefit of not requiring the user to specify the
+# bus.
+# See https://git.qemu.org/?p=qemu.git;a=blob;f=docs/usb2.txt;h=172614d3a7e0566c2cdd988d72a1674b73f879fe;hb=HEAD
+#OPTS="$OPTS -device qemu-xhci"
+
+# Otherwise, use the other XHCI controller (USB 1.1, 2, 3) if you're
+# running qemu < 2.10:
+# https://en.wikibooks.org/wiki/QEMU/Devices/USB/Root
+OPTS="$OPTS -device nec-usb-xhci,id=xhci"
+
+# Or if you need USB 2.0 support only
+#OPTS="$OPTS -device usb-ehci,id=ehci"
+
 # Passthrough USB devices.
 OPTS="$OPTS -usb"
 # USB mouse
-OPTS="$OPTS -usbdevice host:dead:beef"
+OPTS="$OPTS -device usb-host,bus=xhci.0,vendorid=0xdead,productid=0xbeef"
 # USB keyboard
-OPTS="$OPTS -usbdevice host:dead:beef"
+OPTS="$OPTS -device usb-host,bus=xhci.0,vendorid=0xdead,productid=0xbeef"
 
 # Network configuration
-# 
+#
 # See qemu documentation for more details, but '-net user' will put the
 # VM in its own subnet that only the host can access. The Windows VM
 # will be able to initiate communications on the LAN and WAN.
