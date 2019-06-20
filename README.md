@@ -62,6 +62,43 @@ DisplayPort.
 options vfio-pci ids=YOUR_IDS_HERE
 ~~~~
 
+## Configuring the VM
+
+**Configure the options for your VM in [start.sh](./start.sh) before
+attempting to run it.**
+
+This script is highly dependent on your hardware and host OS, and it's
+advisable to go through it line-by-line to understand what options
+you're passing to QEMU.
+
+### USB Devices
+
+The old way of using `-usbdevice` has been deprecated. See the script or
+[QEMU/USB Quick Start][qemu-usb-qs] for more details on specifying USB
+devices.
+
+Ideally, use the `qemu-xhci` controller device (qemu-2.10+) to minimize
+CPU overhead, but the current version on Debian Stretch is qemu-2.8,
+requiring the use of `nec-usb-xhci`--not sure of what the performance
+impact is.
+
+If you don't specify a USB host controller, QEMU defaults to a slower (I
+think) one.
+
+This can be problematic in non-obvious ways: for example, if you wanted
+to connect and use an Xbox Controller for Windows, Windows 10 might
+recognize and install drivers for the Xbox Controller but won't
+initialize it properly (Code 10). This can be resolved by specifying an
+XHCI or EHCI controller and attaching it to that bus (on this particular
+[Reddit thread](https://old.reddit.com/r/Windows10/comments/7v4jc2/xbox_one_wireless_adapter_for_windows_10_code_10/),
+an EHCI/USB-2.0 only controller needed to be specified).
+
+**References**:
+* [QEMU/USB Quick Start][qemu-usb-qs]
+* [QEMU USB Controllers](https://en.wikibooks.org/wiki/QEMU/Devices/USB/Root)
+
+[qemu-usb-qs]: https://git.qemu.org/?p=qemu.git;a=blob;f=docs/usb2.txt;h=172614d3a7e0566c2cdd988d72a1674b73f879fe;hb=HEAD
+
 ## Running the VM
 
 [start.sh](./start.sh)
