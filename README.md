@@ -137,13 +137,30 @@ See the script for some details.
 
 ### Audio
 
-Getting audio was a bit tricky. You might face some issues with
-scratchy, delayed, or even loss of sound.
+Getting audio working on the guest was a bit tricky. You might face some
+issues with scratchy, delayed, or even loss of sound, most of which I
+won't cover here since I did not experience it.
 
-I haven't quite figured out what made my setup work, but I've
-experimented with audio through HDMI/DP-passthrough and USB headsets.
+There are different ways to do audio:
 
-Both seem to work reasonably well.
+1. guest passes through audio to host setup: I attempted to set this up,
+   but this solution seemed to introduce additional problems. It might
+   work well if you have audio working properly on the host OS.
+2. PCIe soundcard passthrough: untested.
+3. HDMI/DP-passthrough (via graphics card): seems to work well, but I am
+   using the DVI output of my graphics card.
+4. USB headset or USB sound card passthrough: this worked the best and
+   what I currently use.
+
+**Note**: Having multiple sound devices (#3 and #4) seemed to result in
+audio intermittently working, with either lots of lag or no sound at
+all.
+
+There is some issue with drivers, latency, audio buffers, and timing,
+but what I found solved this issue was to have only *one* device enabled
+in the start script at one time. In my case, I disabled passing through
+the audio device on the graphics card and only passed through the USB
+headset: all works well now.
 
 ### Force Windows to use MSI on GPU
 
