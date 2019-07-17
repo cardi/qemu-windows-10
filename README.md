@@ -194,3 +194,7 @@ MSI supported, and enabled in Windows 10 guest:
 
 * https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF
 * https://davidyat.es/2016/09/08/gpu-passthrough/
+
+## LICENSE
+
+[`CC0-1.0` / CC0-1.0 Universal](./LICENSE)
