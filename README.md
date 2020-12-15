@@ -6,26 +6,25 @@ a Debian 10 host using QEMU 3.1.0.
 *Note*: Still a work in progress. See [start.sh](./start.sh) for the
 script.
 
-<!-- ToC start -->
-# Table of Contents
+## Table of Contents
 
-1. [qemu-windows-10](#qemu-windows-10)
-   1. [Hardware Requirements](#hardware-requirements)
-   1. [Software Requirements](#software-requirements)
-   1. [Software Configuration](#software-configuration)
-   1. [Configuring the VM](#configuring-the-vm)
-      1. [USB Devices](#usb-devices)
-      1. [Audio](#audio)
-      1. [CPU-pinning with `taskset`](#cpu-pinning-with-taskset)
-      1. [Some Possible Performance Improvements](#some-possible-performance-improvements)
-         1. [hugepages](#hugepages)
-         1. [Force Windows to use MSI on GPU](#force-windows-to-use-msi-on-gpu)
-   1. [Running the VM](#running-the-vm)
-   1. [TODO](#todo)
-      1. [File Sharing with Samba](#file-sharing-with-samba)
-      1. [BIOS/UEFI boot priority](#bios/uefi-boot-priority)
-   1. [Resources](#resources)
-   1. [LICENSE](#license)
+<!-- ToC start -->
+1. [Hardware Requirements](#hardware-requirements)
+1. [Software Requirements](#software-requirements)
+1. [Software Configuration](#software-configuration)
+1. [Configuring the VM](#configuring-the-vm)
+   1. [USB Devices](#usb-devices)
+   1. [Audio](#audio)
+   1. [CPU-pinning with `taskset`](#cpu-pinning-with-taskset)
+   1. [Some Possible Performance Improvements](#some-possible-performance-improvements)
+      1. [hugepages](#hugepages)
+      1. [Force Windows to use MSI on GPU](#force-windows-to-use-msi-on-gpu)
+1. [Running the VM](#running-the-vm)
+1. [TODO](#todo)
+   1. [File Sharing with Samba](#file-sharing-with-samba)
+   1. [BIOS/UEFI boot priority](#bios/uefi-boot-priority)
+1. [Resources](#resources)
+1. [LICENSE](#license)
 <!-- ToC end -->
 
 ## Hardware Requirements
